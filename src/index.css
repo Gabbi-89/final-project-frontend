@@ -1,18 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,100&display=swap');
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  background: #FCF1EB;
+  color: #393A41;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: 'Roboto', sans-serif;
 }
 
 .nav-link {
@@ -22,7 +32,17 @@ code {
   -webkit-text-decoration-line: none;
 }
 
-a.active { /* When the link is activated different styling is showed */
-  color: #8c0e1b;
+a:active { /* When the link is activated different styling is showed */
+  color: #82897F;
   font-weight: bold;
+}
+
+a:visited {
+  color: #fff;
+}
+
+.link {
+  text-decoration-line: none;
+  -moz-text-decoration-line: none;
+  -webkit-text-decoration-line: none;
 }

@@ -1,23 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import { AddRecipe } from 'components/AddRecipe';
+import { ActionButton } from 'components/ActionButton';
 
 import styled from 'styled-components/macro';
 
-import { Container } from 'styling/GlobalStyles';
+import { Wrapper } from 'styling/wrapper';
+import { SectionHeading } from 'styling/headings';
 
-export const Recipes = () => {
+export const Recipes = ({ _id }) => {
+
   const [newRecipe, setNewRecipe] = useState('');
   const [recipes, setRecipes] = useState([]);
 
   // GET request to get all recipes
-  const RECIPE_URL = '';
+  const RECIPE_URL = 'http://localhost:8080/recipes';
 
   useEffect(() => {
     fetch(RECIPE_URL)
       .then(res => res.json())
       .then(json => {
-        setRecipes(json.results)
+        setRecipes(json)
+        console.log(json)
       })
   }, []);
 
@@ -29,20 +34,40 @@ export const Recipes = () => {
     return <AddRecipe />
   } else {
     return (
-      <Container>
-        <h3>Alla recept</h3>
-        <AddRecipeButton onClick={showAddRecipe}>Lägg till recept!</AddRecipeButton>
-      </Container>
+      <Wrapper>
+        <SectionHeading>Alla recept</SectionHeading>
+        <div>
+          {recipes.map((recipe) => (
+            <div key={recipe._id}>
+              <Link to={`/recipes/${_id}`} className="link">
+                <ListElement>{recipe.meal}</ListElement>
+              </Link>
+            </div>
+          ))}
+        </div>
+        <ActionButton
+          type='button'
+          function={showAddRecipe}
+          title='Lägg till recept!'>
+        </ActionButton>
+      </Wrapper>
     )
   }
 };
 
-
-const AddRecipeButton = styled.button`
+const ListElement = styled.li`
+  font-size: 16px;
+  margin-top: 4px;
   cursor: pointer;
-  border-radius: 8px;
-  padding: 4px;
-  width: 150px;
-  margin-top: 10px;
-  align-self: center;
+  text-decoration: none;
+  color: #000;
+  
+
+  :active, :visited, :link {
+    text-decoration: none;
+  }
+
+  :hover {
+    color:  #8c0e1b;
+  }
 `;

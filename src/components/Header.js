@@ -3,37 +3,38 @@ import { NavLink } from 'react-router-dom';
 
 import styled from 'styled-components/macro';
 
+import { themes } from 'styling/themes';
+
 export const Header = () => {
 
   return (
-    <HeaderWrapper>
-      <NavBar>
-        <NavLink to='/' exact className="nav-link">
-          Veckoplan
+    <NavBar>
+      <NavLink to='/' exact className="nav-link">
+        VECKOPLAN
       </NavLink>
-        <NavLink to='/recept' exact className="nav-link">
-          Alla recept
+      <HeaderText>Veckoplanering!</HeaderText>
+      <NavLink to='/recept' exact className="nav-link">
+        ALLA RECEPT
       </NavLink>
-      </NavBar>
-      <HeaderText>Veckoplanering - måltider</HeaderText>
-    </HeaderWrapper>
+    </NavBar>
   );
 };
-
-const HeaderWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 20px;
-  text-align: center;
-`;
 
 const NavBar = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
+  background: ${themes.color.dark};
+  color: ${themes.color.light};
+  padding: 20px 0;
+  top: 0;
+  margin: 0;
+  font-size: 13px;
+  width: 100%;
 `;
 
 const HeaderText = styled.h1`
-  font-size: 30px;
+  font-size: 15px;
+  font-weight: normal;
 `;

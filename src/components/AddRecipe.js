@@ -1,31 +1,41 @@
 import React, { useState } from 'react';
 
+import { ActionButton } from 'components/ActionButton';
+
 import styled from 'styled-components/macro';
+
+import { SectionHeading } from 'styling/headings';
 
 export const AddRecipe = () => {
   const [meal, setMeal] = useState('');
   const [description, setDescription] = useState('');
   const [ingredients, setIngredients] = useState([]);
 
+  const ADDRECIPE_URL = 'http://localhost:8080/recipes';
+
   const handleSubmit = event => {
     event.preventDefault();
-  };
+    window.location.reload();
 
-  // Insert a POST request
+    // Insert a POST request
+    fetch(ADDRECIPE_URL,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ meal: meal, description: description, ingredients: ingredients })
+      }
+    ).then(() => {
+      setMeal();
+      setIngredients();
+      setDescription();
+    });
+  };
 
   return (
     <FormWrapper onSubmit={handleSubmit}>
-      <h3>Lägg till nytt recept:</h3>
-      <LabelField>
-        Namn på måltid:
-        <InputField
-          required
-          placeholder='Namn på måltid'
-          type='text'
-          value={meal}
-          onChange={event => setMeal(event.target.value)}
-        />
-      </LabelField>
+      <SectionHeading>Lägg till nytt recept:</SectionHeading>
       <LabelField>
         Namn på måltid:
         <InputField
@@ -50,13 +60,17 @@ export const AddRecipe = () => {
         Ingredienser:
         <InputField
           required
-          placeholder='Skriv in ingredienserna som behövs för att laga den här måltiden'
+          placeholder='Skriv in ingredienserna som behövs för den här rätten'
           type='text'
           value={ingredients}
           onChange={event => setIngredients(event.target.value)}
         />
       </LabelField>
-      <AddRecipeButton type="submit" onClick={handleSubmit}>Lägg till recept!</AddRecipeButton>
+      <ActionButton
+        type="submit"
+        function={handleSubmit}
+        title='Lägg till recept!'>
+      </ActionButton>
     </FormWrapper>
   );
 };
@@ -64,24 +78,30 @@ export const AddRecipe = () => {
 const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 0;
+  margin: 0;
 `;
 
 const LabelField = styled.label`
-  margin: 4px 0;
+  margin: 4px;
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
+  font-size: 16px;
 `;
 
 const InputField = styled.input`
-  margin-left: 4px;
-  width: 250px;
+  margin-top: 4px;
+  padding: 4px;
+  width: 280px;
   height: 30px;
-  border: none;
-  border-bottom: 1px solid #749694;
+  border-radius: 8px;
+  border: 1px solid #749694;
+  font-size: 10px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  font-family: 'Roboto', sans-serif;
 
   /* Styling of placeholder text */
   ::-webkit-input-placeholder {
@@ -96,13 +116,4 @@ const InputField = styled.input`
   :-moz-placeholder { /* Firefox 18- */
     word-wrap: break-word;
   }
-`;
-
-const AddRecipeButton = styled.button`
-  cursor: pointer;
-  border-radius: 8px;
-  padding: 4px;
-  width: 150px;
-  margin-top: 10px;
-  align-self: center;
 `;
