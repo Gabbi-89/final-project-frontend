@@ -32,8 +32,7 @@ code {
   -webkit-text-decoration-line: none;
 }
 
-a:active { /* When the link is activated different styling is showed */
-  color: #82897F;
+a.active { /* When the link is activated different styling is showed */
   font-weight: bold;
 }
 
@@ -41,8 +40,16 @@ a:visited {
   color: #fff;
 }
 
-.link {
+.link, .recipe-link {
   text-decoration-line: none;
   -moz-text-decoration-line: none;
   -webkit-text-decoration-line: none;
+}
+
+.recipe-link {
+  color: #393A41;
+}
+
+.recipe-link:visited {
+  color: #393A41;
 }

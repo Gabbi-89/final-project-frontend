@@ -15,14 +15,13 @@ export const Recipes = ({ _id }) => {
   const [recipes, setRecipes] = useState([]);
 
   // GET request to get all recipes
-  const RECIPE_URL = 'http://localhost:8080/recipes';
+  const RECIPE_URL = 'https://recept-api.herokuapp.com/recipes';
 
   useEffect(() => {
     fetch(RECIPE_URL)
       .then(res => res.json())
       .then(json => {
         setRecipes(json)
-        console.log(json)
       })
   }, []);
 
@@ -38,8 +37,8 @@ export const Recipes = ({ _id }) => {
         <SectionHeading>Alla recept</SectionHeading>
         <div>
           {recipes.map((recipe) => (
-            <div key={recipe._id}>
-              <Link to={`/recipes/${_id}`} className="link">
+            <div key={recipe._id} className={recipe._id}>
+              <Link to={`/recipes/${recipe._id}`} className="link" >
                 <ListElement>{recipe.meal}</ListElement>
               </Link>
             </div>

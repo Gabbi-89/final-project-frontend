@@ -6,7 +6,7 @@ export const Ingredients = () => {
   const [ingredients, setIngredients] = useState([]);
 
   // GET request to get all recipes
-  const RECIPE_URL = 'http://localhost:8080/recipes';
+  const RECIPE_URL = 'https://recept-api.herokuapp.com/recipes';
 
   useEffect(() => {
     fetch(RECIPE_URL)

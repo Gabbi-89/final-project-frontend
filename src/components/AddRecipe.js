@@ -11,7 +11,7 @@ export const AddRecipe = () => {
   const [description, setDescription] = useState('');
   const [ingredients, setIngredients] = useState([]);
 
-  const ADDRECIPE_URL = 'http://localhost:8080/recipes';
+  const ADDRECIPE_URL = 'https://recept-api.herokuapp.com/recipes';
 
   const handleSubmit = event => {
     event.preventDefault();
