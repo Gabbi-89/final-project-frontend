@@ -21,6 +21,9 @@ export const Recipe = () => {
       })
   }, [_id]);
 
+  console.log(recipe.ingredients);
+  const arrayOfIngredients = recipe.ingredients;
+
   return (
     <Wrapper>
       <ActionButton
@@ -31,7 +34,12 @@ export const Recipe = () => {
       <SectionHeading>{recipe.meal}</SectionHeading>
       <div>
         <UnderlinedText>Det här behöver du:</UnderlinedText>
-        <p>{recipe.ingredients}</p>
+        {arrayOfIngredients && (
+          <ul key={arrayOfIngredients[0]}>{arrayOfIngredients.map((ingredient) => (
+            <li>{ingredient}</li>
+          ))}
+          </ul>
+        )}
         <UnderlinedText>Gör så här:</UnderlinedText>
         <p>{recipe.description}</p>
       </div>

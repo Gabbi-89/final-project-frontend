@@ -12,7 +12,7 @@ export const Header = () => {
       <NavLink to='/' exact className="nav-link">
         VECKOPLAN
       </NavLink>
-      <HeaderText>Veckoplanering!</HeaderText>
+      <HeaderText>Veckoplanering</HeaderText>
       <NavLink to='/recept' exact className="nav-link">
         ALLA RECEPT
       </NavLink>
@@ -35,6 +35,13 @@ const NavBar = styled.nav`
 `;
 
 const HeaderText = styled.h1`
-  font-size: 15px;
-  font-weight: normal;
+  font-size: 18px;
+  font-weight: bold;
+  color: ${themes.color.white};
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  @media (min-width: 767px) {
+    font-size: 24px;
+  }
 `;
