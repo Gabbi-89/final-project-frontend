@@ -9,7 +9,7 @@ import styled from 'styled-components/macro';
 import { Wrapper } from 'styling/wrapper';
 import { SectionHeading } from 'styling/headings';
 
-export const Recipes = ({ _id }) => {
+export const Recipes = () => {
 
   const [newRecipe, setNewRecipe] = useState('');
   const [recipes, setRecipes] = useState([]);
@@ -19,8 +19,8 @@ export const Recipes = ({ _id }) => {
 
   useEffect(() => {
     fetch(RECIPE_URL)
-      .then(res => res.json())
-      .then(json => {
+      .then((res) => res.json())
+      .then((json) => {
         setRecipes(json)
       })
   }, []);

@@ -3,10 +3,9 @@ import { NavLink } from 'react-router-dom';
 
 import styled from 'styled-components/macro';
 
-import { themes } from 'styling/themes';
+import { theme } from 'styling/theme';
 
 export const Header = () => {
-
   return (
     <NavBar>
       <NavLink to='/' exact className="nav-link">
@@ -25,8 +24,8 @@ const NavBar = styled.nav`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background: ${themes.color.dark};
-  color: ${themes.color.light};
+  background: ${theme.color.dark};
+  color: ${theme.color.light};
   padding: 20px 0;
   top: 0;
   margin: 0;
@@ -37,7 +36,7 @@ const NavBar = styled.nav`
 const HeaderText = styled.h1`
   font-size: 18px;
   font-weight: bold;
-  color: ${themes.color.white};
+  color: ${theme.color.white};
   letter-spacing: 1px;
   text-transform: uppercase;
 

@@ -3,19 +3,21 @@ import React, { useState } from 'react';
 import { ActionButton } from 'components/ActionButton';
 
 import styled from 'styled-components/macro';
+import { theme } from 'styling/theme';
 
 import { SectionHeading } from 'styling/headings';
 
 export const AddRecipe = () => {
   const [meal, setMeal] = useState('');
   const [description, setDescription] = useState('');
-  const [ingredients, setIngredients] = useState([]);
+  const [ingredients, setIngredients] = useState();
 
   const ADDRECIPE_URL = 'https://recept-api.herokuapp.com/recipes';
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     window.location.reload();
+    ingredients.arrayFrom(', ');
 
     // Insert a POST request
     fetch(ADDRECIPE_URL,
@@ -24,13 +26,13 @@ export const AddRecipe = () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ meal: meal, description: description, ingredients: ingredients })
-      }
-    ).then(() => {
-      setMeal();
-      setIngredients();
-      setDescription();
-    });
+        body: JSON.stringify({ meal, description, ingredients })
+      })
+      .then(() => {
+        setMeal();
+        setIngredients();
+        setDescription();
+      });
   };
 
   return (
@@ -43,8 +45,7 @@ export const AddRecipe = () => {
           placeholder='Namn på måltid'
           type='text'
           value={meal}
-          onChange={event => setMeal(event.target.value)}
-        />
+          onChange={(event) => setMeal(event.target.value)} />
       </LabelField>
       <LabelField>
         Beskrivning:
@@ -53,8 +54,7 @@ export const AddRecipe = () => {
           placeholder='Skriv in instruktioner för hur du lagar den här måltiden'
           type='text'
           value={description}
-          onChange={event => setDescription(event.target.value)}
-        />
+          onChange={(event) => setDescription(event.target.value)} />
       </LabelField>
       <LabelField>
         Ingredienser:
@@ -63,14 +63,12 @@ export const AddRecipe = () => {
           placeholder='Skriv in ingredienserna som behövs för den här rätten'
           type='text'
           value={ingredients}
-          onChange={event => setIngredients(event.target.value)}
-        />
+          onChange={(event) => setIngredients(event.target.value)} />
       </LabelField>
       <ActionButton
         type="submit"
         function={handleSubmit}
-        title='Lägg till recept!'>
-      </ActionButton>
+        title='Lägg till recept!' />
     </FormWrapper>
   );
 };
@@ -101,7 +99,7 @@ const InputField = styled.input`
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  font-family: 'Roboto', sans-serif;
+  font-family: ${theme.fonts.mainfont};
 
   /* Styling of placeholder text */
   ::-webkit-input-placeholder {

@@ -1,11 +1,14 @@
 import React from 'react';
 
 import styled from 'styled-components';
+import { theme } from 'styling/theme';
 
 export const Footer = () => {
   return (
     <FooterWrapper>
-      <FooterText>This website is made by Gabriella Bolin as Final Project @Technigo's Bootcamp 20/21</FooterText>
+      <FooterText>
+        This website is made by Gabriella Bolin as Final Project @Technigo's Bootcamp 20/21
+      </FooterText>
       <FooterText>See more at <FooterLink href='http://gabriellabolin.se/'>www.gabriellabolin.se</FooterLink></FooterText>
     </FooterWrapper>
   );
@@ -28,17 +31,15 @@ const FooterText = styled.p`
 `;
 
 const FooterLink = styled.a`
-  color: #393A41;
+  color: ${theme.color.dark};
 
   :visited {
-    color: #393A41;
+    color: ${theme.color.dark};
   }
 
   :active {
-    color: #393A41;
+    color: ${theme.color.dark};
   }
 `;
-
-
 
 // <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>

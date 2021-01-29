@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
 
-import { themes } from './themes';
+import { theme } from './theme';
 
 export const Wrapper = styled.section`
   padding: 10px;
@@ -8,7 +8,7 @@ export const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   border: none;
-  background: ${themes.color.white};
+  background: ${theme.color.white};
 
   @media (min-width: 1023px) {
     width: 350px; 

@@ -2,14 +2,13 @@ import React from 'react';
 
 import styled from 'styled-components/macro';
 
-import { themes } from 'styling/themes';
+import { theme } from 'styling/theme';
 
-export const ActionButton = props => {
+export const ActionButton = (props) => {
   return (
     <Button
       type={props.action}
-      onClick={props.function}
-    >
+      onClick={props.function}>
       {props.title}
     </Button>
   );
@@ -22,8 +21,8 @@ const Button = styled.button`
   width: 130px;
   margin-top: 10px;
   align-self: center;
-  font-family: 'Roboto', sans-serif;
-  color: ${themes.color.dark};
+  font-family: ${theme.fonts.mainfont};
+  color: ${theme.color.dark};
 
   :hover {
     background: grey;

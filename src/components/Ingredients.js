@@ -10,8 +10,8 @@ export const Ingredients = () => {
 
   useEffect(() => {
     fetch(RECIPE_URL)
-      .then(res => res.json())
-      .then(json => {
+      .then((res) => res.json())
+      .then((json) => {
         setIngredients(json)
         console.log(json)
       })

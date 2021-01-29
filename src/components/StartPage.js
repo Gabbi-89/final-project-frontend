@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import styled from 'styled-components/macro';
 
-import { themes } from 'styling/themes';
+import { theme } from 'styling/theme';
 import { Wrapper } from 'styling/wrapper';
 import { SectionHeading, Weekday } from 'styling/headings';
 
@@ -33,8 +33,8 @@ export const StartPage = () => {
 
   useEffect(() => {
     fetch(RECIPE_URL)
-      .then(res => res.json())
-      .then(json => {
+      .then((res) => res.json())
+      .then((json) => {
         setRecipes(json)
       })
   }, []);
@@ -133,7 +133,7 @@ export const StartPage = () => {
           </Wrapper>
         </WeekWrapper>
       )}
-    </Section >
+    </Section>
   );
 };
 
@@ -151,12 +151,12 @@ const RandomizerButton = styled.button`
   padding: 10px;
   font-size: 22px;
   width: 250px;
-  font-family: 'Roboto', sans-serif;
-  background: ${themes.color.dark};
-  color: ${themes.color.white};
+  font-family: ${theme.fonts.mainfont};
+  background: ${theme.color.dark};
+  color: ${theme.color.white};
 
   :hover {
-    background: ${themes.color.shadow};
+    background: ${theme.color.shadow};
   }
 `;
 

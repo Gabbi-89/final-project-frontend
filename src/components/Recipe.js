@@ -15,8 +15,8 @@ export const Recipe = () => {
 
   useEffect(() => {
     fetch(`https://recept-api.herokuapp.com/recipes/${_id}`)
-      .then(res => res.json())
-      .then(json => {
+      .then((res) => res.json())
+      .then((json) => {
         setRecipe(json);
       })
   }, [_id]);
@@ -29,8 +29,7 @@ export const Recipe = () => {
       <ActionButton
         function={history.goBack}
         type='button'
-        title='Tillbaka'>
-      </ActionButton>
+        title='Tillbaka' />
       <SectionHeading>{recipe.meal}</SectionHeading>
       <div>
         <UnderlinedText>Det här behöver du:</UnderlinedText>
@@ -51,6 +50,5 @@ const UnderlinedText = styled.p`
   text-decoration: underline;
   margin-bottom: -10px;
 `;
-
 
 // Idea for design https://dribbble.com/shots/5246052-Personalised-meal-planning-app
