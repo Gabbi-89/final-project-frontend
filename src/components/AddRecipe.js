@@ -10,14 +10,14 @@ import { SectionHeading } from 'styling/headings';
 export const AddRecipe = () => {
   const [meal, setMeal] = useState('');
   const [description, setDescription] = useState('');
-  const [ingredients, setIngredients] = useState();
+  const [ingredients, setIngredients] = useState([]);
 
   const ADDRECIPE_URL = 'https://recept-api.herokuapp.com/recipes';
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    ingredients.split(', ');
     window.location.reload();
-    ingredients.arrayFrom(', ');
 
     // Insert a POST request
     fetch(ADDRECIPE_URL,
@@ -30,7 +30,7 @@ export const AddRecipe = () => {
       })
       .then(() => {
         setMeal();
-        setIngredients();
+        setIngredients([]);
         setDescription();
       });
   };
