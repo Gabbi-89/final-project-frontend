@@ -8,7 +8,7 @@ export const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   border: none;
-  background: ${theme.color.white};
+  background: ${theme.colors.white};
 
   @media (min-width: 1023px) {
     width: 350px; 

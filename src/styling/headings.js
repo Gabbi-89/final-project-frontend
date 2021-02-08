@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 
 export const SectionHeading = styled.h2`
-  font-size: 14px;
+  font-size: 16px;
   text-transform: uppercase;
   font-weight: bold;
   margin: 10px 0;

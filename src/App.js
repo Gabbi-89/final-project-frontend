@@ -68,8 +68,8 @@ export const App = () => {
 };
 
 const MainContainer = styled.section`
-  background: ${theme.color.white};
-  box-shadow: 1px 1px 8px ${theme.color.shadow};
+  background: ${theme.colors.white};
+  box-shadow: 1px 1px 8px ${theme.colors.shadow};
   margin: 20px;
   padding: 20px 10px;
 `;

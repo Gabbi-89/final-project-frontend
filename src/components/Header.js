@@ -24,8 +24,8 @@ const NavBar = styled.nav`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background: ${theme.color.dark};
-  color: ${theme.color.light};
+  background: ${theme.colors.dark};
+  color: ${theme.colors.light};
   padding: 20px 0;
   top: 0;
   margin: 0;
@@ -36,7 +36,7 @@ const NavBar = styled.nav`
 const HeaderText = styled.h1`
   font-size: 18px;
   font-weight: bold;
-  color: ${theme.color.white};
+  color: ${theme.colors.white};
   letter-spacing: 1px;
   text-transform: uppercase;
 

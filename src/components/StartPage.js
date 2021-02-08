@@ -7,8 +7,11 @@ import { theme } from 'styling/theme';
 import { Wrapper } from 'styling/wrapper';
 import { SectionHeading, Weekday } from 'styling/headings';
 
+import { Loader } from './Loader';
+
 export const StartPage = () => {
   const [recipes, setRecipes] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // State for the meals
   const [randomMealMon, setRandomMealMon] = useState();
@@ -36,6 +39,7 @@ export const StartPage = () => {
       .then((res) => res.json())
       .then((json) => {
         setRecipes(json)
+        setLoading(false);
       })
   }, []);
 
@@ -70,71 +74,80 @@ export const StartPage = () => {
     setIdThu(idThu);
   }
 
-  return (
-    <Section>
-      <RandomizerButton type='button' onClick={onClickRandomMeal}>
-        Sätt veckans måltider!
+  if (loading) {
+    return <Loader />
+  }
+  else {
+    return (
+      <Section>
+        {recipes && (
+          <>
+            <RandomizerButton type='button' onClick={onClickRandomMeal}>
+              Sätt veckans måltider!
       </RandomizerButton>
-      {ingredientsMon.length > 0 && (
-        <WeekWrapper>
-          <Wrapper>
-            <SectionHeading>Veckans meny:</SectionHeading>
-            <DayWrapper>
-              <Weekday>Måndag: </Weekday>
-              <Link to={`/recipes/${idMon}`} className="recipe-link">
-                <RandomMeal>{randomMealMon}</RandomMeal>
-              </Link>
-            </DayWrapper>
-            <DayWrapper>
-              <Weekday>Tisdag: </Weekday>
-              <Link to={`/recipes/${idTue}`} className="recipe-link">
-                <RandomMeal>{randomMealTue}</RandomMeal>
-              </Link>
-            </DayWrapper>
-            <DayWrapper>
-              <Weekday>Onsdag: </Weekday>
-              <Link to={`/recipes/${idWed}`} className="recipe-link">
-                <RandomMeal>{randomMealWed}</RandomMeal>
-              </Link>
-            </DayWrapper>
-            <DayWrapper>
-              <Weekday>Torsdag: </Weekday>
-              <Link to={`/recipes/${idThu}`} className="recipe-link">
-                <RandomMeal>{randomMealThu}</RandomMeal>
-              </Link>
-            </DayWrapper>
-          </Wrapper>
-          <Wrapper>
-            <SectionHeading>Att inhandla för veckan:</SectionHeading>
-            {ingredientsMon && (
-              <IngredientsListElement key={ingredientsMon[0]}>{ingredientsMon.map((ingredient) => (
-                <li>{ingredient}</li>
-              ))}
-              </IngredientsListElement>
+            {ingredientsMon.length > 0 && (
+              <WeekWrapper>
+                <Wrapper>
+                  <SectionHeading>Veckans meny:</SectionHeading>
+                  <DayWrapper>
+                    <Weekday>Måndag: </Weekday>
+                    <Link to={`/recipes/${idMon}`} className="recipe-link">
+                      <RandomMeal>{randomMealMon}</RandomMeal>
+                    </Link>
+                  </DayWrapper>
+                  <DayWrapper>
+                    <Weekday>Tisdag: </Weekday>
+                    <Link to={`/recipes/${idTue}`} className="recipe-link">
+                      <RandomMeal>{randomMealTue}</RandomMeal>
+                    </Link>
+                  </DayWrapper>
+                  <DayWrapper>
+                    <Weekday>Onsdag: </Weekday>
+                    <Link to={`/recipes/${idWed}`} className="recipe-link">
+                      <RandomMeal>{randomMealWed}</RandomMeal>
+                    </Link>
+                  </DayWrapper>
+                  <DayWrapper>
+                    <Weekday>Torsdag: </Weekday>
+                    <Link to={`/recipes/${idThu}`} className="recipe-link">
+                      <RandomMeal>{randomMealThu}</RandomMeal>
+                    </Link>
+                  </DayWrapper>
+                </Wrapper>
+                <Wrapper>
+                  <SectionHeading>Att inhandla för veckan:</SectionHeading>
+                  {ingredientsMon && (
+                    <IngredientsListElement key={ingredientsMon[0]}>{ingredientsMon.map((ingredient) => (
+                      <li>{ingredient}</li>
+                    ))}
+                    </IngredientsListElement>
+                  )}
+                  {ingredientsTue && (
+                    <IngredientsListElement key={ingredientsTue[1]}>{ingredientsTue.map((ingredient) => (
+                      <li>{ingredient}</li>
+                    ))}
+                    </IngredientsListElement>
+                  )}
+                  {ingredientsWed && (
+                    <IngredientsListElement key={ingredientsWed[0]}>{ingredientsWed.map((ingredient) => (
+                      <li>{ingredient}</li>
+                    ))}
+                    </IngredientsListElement>
+                  )}
+                  {ingredientsThu && (
+                    <IngredientsListElement key={ingredientsThu[0]}>{ingredientsThu.map((ingredient) => (
+                      <li>{ingredient}</li>
+                    ))}
+                    </IngredientsListElement>
+                  )}
+                </Wrapper>
+              </WeekWrapper>
             )}
-            {ingredientsTue && (
-              <IngredientsListElement key={ingredientsTue[1]}>{ingredientsTue.map((ingredient) => (
-                <li>{ingredient}</li>
-              ))}
-              </IngredientsListElement>
-            )}
-            {ingredientsWed && (
-              <IngredientsListElement key={ingredientsWed[0]}>{ingredientsWed.map((ingredient) => (
-                <li>{ingredient}</li>
-              ))}
-              </IngredientsListElement>
-            )}
-            {ingredientsThu && (
-              <IngredientsListElement key={ingredientsThu[0]}>{ingredientsThu.map((ingredient) => (
-                <li>{ingredient}</li>
-              ))}
-              </IngredientsListElement>
-            )}
-          </Wrapper>
-        </WeekWrapper>
-      )}
-    </Section>
-  );
+          </>
+        )}
+      </Section>
+    )
+  }
 };
 
 const Section = styled.div`
@@ -152,11 +165,11 @@ const RandomizerButton = styled.button`
   font-size: 22px;
   width: 250px;
   font-family: ${theme.fonts.mainfont};
-  background: ${theme.color.dark};
-  color: ${theme.color.white};
+  background: ${theme.colors.dark};
+  color: ${theme.colors.white};
 
   :hover {
-    background: ${theme.color.shadow};
+    background: ${theme.colors.shadow};
   }
 `;
 

@@ -6,8 +6,8 @@ import { ActionButton } from 'components/ActionButton';
 import styled from 'styled-components/macro';
 import { theme } from 'styling/theme';
 
-
 import { SectionHeading } from 'styling/headings';
+import { Loader } from 'components/Loader';
 
 export const AddRecipe = () => {
   const [meal, setMeal] = useState('');
@@ -28,7 +28,7 @@ export const AddRecipe = () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ meal, description, ingredients })
+        body: JSON.stringify({ meal, description, ingredients: [ingredients.split(', ')] })
       })
       .then(() => {
         setMeal();
@@ -38,49 +38,49 @@ export const AddRecipe = () => {
       });
   };
 
-  // if (loading) {
-  //   return <Loader />
-  // } else 
-  if (ingredients.success === false) {
-    return <Redirect to='404' />
-  } else {
-    return (
-      <FormWrapper onSubmit={handleSubmit}>
-        <SectionHeading>Lägg till nytt recept:</SectionHeading>
-        <LabelField>
-          Namn på måltid:
-        <InputField
-            required
-            placeholder='Namn på måltid'
-            type='text'
-            value={meal}
-            onChange={(event) => setMeal(event.target.value)} />
-        </LabelField>
-        <LabelField>
-          Beskrivning:
-        <InputField
-            required
-            placeholder='Skriv in instruktioner för hur du lagar den här måltiden'
-            type='text'
-            value={description}
-            onChange={(event) => setDescription(event.target.value)} />
-        </LabelField>
-        <LabelField>
-          Ingredienser:
-        <InputField
-            required
-            placeholder='Skriv in ingredienserna som behövs för den här rätten'
-            type='text'
-            value={ingredients}
-            onChange={(event) => setIngredients(event.target.value)} />
-        </LabelField>
-        <ActionButton
-          type="submit"
-          function={handleSubmit}
-          title='Lägg till recept!' />
-      </FormWrapper>
-    )
-  }
+  if (loading) {
+    return <Loader />
+  } else
+    if (ingredients.success === false) {
+      return <Redirect to='404' />
+    } else {
+      return (
+        <FormWrapper onSubmit={handleSubmit}>
+          <SectionHeading>Lägg till nytt recept:</SectionHeading>
+          <LabelField>
+            Namn på måltid:
+          <InputField
+              required
+              placeholder='Namn på måltid'
+              type='text'
+              value={meal}
+              onChange={(event) => setMeal(event.target.value)} />
+          </LabelField>
+          <LabelField>
+            Beskrivning:
+          <InputField
+              required
+              placeholder='Skriv in instruktioner för hur du lagar den här måltiden'
+              type='text'
+              value={description}
+              onChange={(event) => setDescription(event.target.value)} />
+          </LabelField>
+          <LabelField>
+            Ingredienser:
+          <InputField
+              required
+              placeholder='Skriv in ingredienserna som behövs för den här rätten'
+              type='text'
+              value={ingredients}
+              onChange={(event) => setIngredients(event.target.value)} />
+          </LabelField>
+          <ActionButton
+            type="submit"
+            function={handleSubmit}
+            title='Lägg till recept!' />
+        </FormWrapper>
+      )
+    }
 };
 
 const FormWrapper = styled.form`
@@ -125,3 +125,9 @@ const InputField = styled.input`
     word-wrap: break-word;
   }
 `;
+
+/* Jag tänker att du kan ta den string som användaren skriver
+in och den första funktion du skriver in i clickhandlern är
+en string.arrayFrom(' , ' ) eller hur den där nu är, alltså att
+man splittar stringen efter varje kommatecken och
+gör en array av den */

@@ -31,14 +31,14 @@ const FooterText = styled.p`
 `;
 
 const FooterLink = styled.a`
-  color: ${theme.color.dark};
+  color: ${theme.colors.dark};
 
   :visited {
-    color: ${theme.color.dark};
+    color: ${theme.colors.dark};
   }
 
   :active {
-    color: ${theme.color.dark};
+    color: ${theme.colors.dark};
   }
 `;
 

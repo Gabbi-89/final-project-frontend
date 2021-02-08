@@ -17,14 +17,17 @@ export const ActionButton = (props) => {
 const Button = styled.button`
   cursor: pointer;
   border-radius: 8px;
-  padding: 6px 4px;
-  width: 130px;
+  border: 2px solid ${theme.fonts.dark};
+  padding: 10px 8px;
+  width: 135px;
   margin-top: 10px;
   align-self: center;
   font-family: ${theme.fonts.mainfont};
-  color: ${theme.color.dark};
+  color: ${theme.colors.dark};
+  font-size: 16px;
+  font-weight: bold;
 
   :hover {
-    background: grey;
+    background: ${theme.colors.light};
   }
 `;
