@@ -9,13 +9,14 @@ import { Header } from 'components/Header';
 import { StartPage } from 'components/StartPage';
 import { Recipes } from 'components/Recipes';
 import { Recipe } from 'components/Recipe';
+import { NotFound } from 'components/NotFound';
+import { Status } from 'components/Status';
 import { Footer } from 'components/Footer';
 
 import { theme } from 'styling/theme';
+import { Provider } from 'react-redux';
 
-const reducer = combineReducers({
-  meals: meals.reducer
-});
+const reducer = combineReducers({ meals: meals.reducer });
 
 // Retrieves the localStorage and use it as the initial state
 const persistedStateJSON = localStorage.getItem('weekly-plan');
@@ -40,22 +41,28 @@ store.subscribe(() => {
 export const App = () => {
   return (
     <BrowserRouter>
-      <Header />
-      <MainContainer>
-        <Switch>
-          <Route path='/' exact>
-            <StartPage />
-          </Route>
-          <Route path='/recept'>
-            <Recipes />
-          </Route>
-          <Route path='/recipes/:_id'>
-            <Recipe />
-          </Route>
-          <Redirect path='/404' />
-        </Switch>
-      </MainContainer>
-      <Footer />
+      <Provider store={store}>
+        <Header />
+        <Status />
+        <MainContainer>
+          <Switch>
+            <Route path='/' exact>
+              <StartPage />
+            </Route>
+            <Route path='/recept'>
+              <Recipes />
+            </Route>
+            <Route path='/recipes/:_id'>
+              <Recipe />
+            </Route>
+            <Route path='/404'>
+              <NotFound />
+            </Route>
+            <Redirect to='/404' />
+          </Switch>
+        </MainContainer>
+        <Footer />
+      </Provider>
     </BrowserRouter>
   );
 };
