@@ -16,7 +16,6 @@ export const AddRecipe = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    ingredients.split(', ');
     window.location.reload();
 
     // Insert a POST request
@@ -26,7 +25,7 @@ export const AddRecipe = () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ meal, description, ingredients })
+        body: JSON.stringify({ meal, description, ingredients: [ingredients.split(', ')] })
       })
       .then(() => {
         setMeal();
@@ -115,3 +114,9 @@ const InputField = styled.input`
     word-wrap: break-word;
   }
 `;
+
+/* Jag tänker att du kan ta den string som användaren skriver 
+in och den första funktion du skriver in i clickhandlern är 
+en string.arrayFrom(' , ' ) eller hur den där nu är, alltså att 
+man splittar stringen efter varje kommatecken och 
+gör en array av den */

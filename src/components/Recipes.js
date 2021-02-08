@@ -63,7 +63,9 @@ const ListElement = styled.li`
   
 
   :active, :visited, :link {
-    text-decoration: none;
+    text-decoration-line: none;
+    -moz-text-decoration-line: none;
+    -webkit-text-decoration-line: none;
   }
 
   :hover {

@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom';
 
 import styled from 'styled-components/macro';
 
+import { Loader } from './Loader';
+
 import { theme } from 'styling/theme';
 import { Wrapper } from 'styling/wrapper';
 import { SectionHeading, Weekday } from 'styling/headings';
 
 export const StartPage = () => {
   const [recipes, setRecipes] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   // State for the meals
   const [randomMealMon, setRandomMealMon] = useState();
@@ -36,6 +39,7 @@ export const StartPage = () => {
       .then((res) => res.json())
       .then((json) => {
         setRecipes(json)
+        setLoading(false);
       })
   }, []);
 
@@ -70,8 +74,14 @@ export const StartPage = () => {
     setIdThu(idThu);
   }
 
+  if (loading) {
+    return <Loader />
+  }
+  else {
   return (
     <Section>
+      {recipes && ( 
+      <>
       <RandomizerButton type='button' onClick={onClickRandomMeal}>
         Sätt veckans måltider!
       </RandomizerButton>
@@ -133,8 +143,11 @@ export const StartPage = () => {
           </Wrapper>
         </WeekWrapper>
       )}
+      </>
+      )}
     </Section>
-  );
+  )
+  }
 };
 
 const Section = styled.div`
@@ -152,11 +165,11 @@ const RandomizerButton = styled.button`
   font-size: 22px;
   width: 250px;
   font-family: ${theme.fonts.mainfont};
-  background: ${theme.color.dark};
-  color: ${theme.color.white};
+  background: ${theme.colors.dark};
+  color: ${theme.colors.white};
 
   :hover {
-    background: ${theme.color.shadow};
+    background: ${theme.colors.shadow};
   }
 `;
 
