@@ -24,6 +24,7 @@ export const Recipe = () => {
   }, [_id]);
 
   const arrayOfIngredients = recipe.ingredients;
+  console.log(arrayOfIngredients);
 
   var str = recipe.description;
   console.log(str)
@@ -45,7 +46,7 @@ export const Recipe = () => {
         )}
         <RecipeDescription>
           <UnderlinedText>Gör så här:</UnderlinedText>
-          {/* OM htto länk så vissa detta annars recept beskrivningen */}
+          {/* OM http länk så vissa detta annars recept beskrivningen */}
           {recipe.description && (
             <RecipeLink href={recipe.description} target='_blank'>Följ receptlänk</RecipeLink>
           )}

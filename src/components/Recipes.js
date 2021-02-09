@@ -23,14 +23,18 @@ export const Recipes = () => {
       .then((json) => {
         setRecipes(json)
       })
-  }, []);
+  }, [newRecipe]);
 
   const showAddRecipe = () => {
     setNewRecipe('AddRecipe')
   };
 
+  const hideAddRecipe = () => {
+    setNewRecipe('')
+  }
+
   if (newRecipe === 'AddRecipe') {
-    return <AddRecipe />
+    return <AddRecipe onFormSubmit={hideAddRecipe} />
   } else {
     return (
       <Wrapper>

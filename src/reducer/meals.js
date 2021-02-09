@@ -14,6 +14,9 @@ export const meals = createSlice({
     setErrorMessage: (state, action) => {
       const { errorMessage } = action.payload;
       state.week.errorMessage = errorMessage;
+    },
+    setWeeklyPlan: (state, action) => {
+
     }
   }
 });

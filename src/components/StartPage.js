@@ -76,15 +76,14 @@ export const StartPage = () => {
 
   if (loading) {
     return <Loader />
-  }
-  else {
+  } else {
     return (
       <Section>
         {recipes && (
           <>
             <RandomizerButton type='button' onClick={onClickRandomMeal}>
               Sätt veckans måltider!
-      </RandomizerButton>
+            </RandomizerButton>
             {ingredientsMon.length > 0 && (
               <WeekWrapper>
                 <Wrapper>
